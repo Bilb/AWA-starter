@@ -8,11 +8,18 @@ jobs:
   playwright:
     name: 'Playwright Tests v1.49.0'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     container:
       image: mcr.microsoft.com/playwright:v1.49.0-noble
       options: --user 1001
     steps:
+      - name: Install git lfs
+        run: |
+          echo "auth sufficient pam_permit.so" >> /etc/pam.d/su
+          su - root -c 'apt-get update && apt install -y git-lfs sudo && git lfs install'
       - uses: actions/checkout@v4
+        with:
+          lfs: true
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc

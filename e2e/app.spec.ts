@@ -16,6 +16,7 @@ async function fullPageScreenshot({
     `home-full${width ? `-w${width}px` : ''}.png`,
     {
       fullPage: true,
+      timeout: 10000
     }
   );
 }
