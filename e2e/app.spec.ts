@@ -13,7 +13,7 @@ async function fullPageScreenshot({
   width?: number;
 }) {
   await expect(page).toHaveScreenshot(
-    `home-full${width ? `-${width}` : ''}.png`,
+    `home-full${width ? `-w${width}px` : ''}.png`,
     {
       fullPage: true,
     }
